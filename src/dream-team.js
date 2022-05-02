@@ -13,8 +13,22 @@ const { NotImplementedError } = require('../extensions/index.js');
  * createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) => 'LOO'
  *
  */
-function createDreamTeam(/* members */) {
-  throw new NotImplementedError('Not implemented');
+function createDreamTeam(/* members */members) {
+
+  if (!Array.isArray(members)){
+    return false;
+    //console.log( false);
+  } else {
+    let arr =[];
+    let firstLetters = '';
+    let getStringMembers = members.filter(member => typeof(member) === "string");
+    let deleteWhiteSpaces = getStringMembers.forEach(member => arr.push(member.replace(/\s+/g, '')));
+    let sort = arr.forEach(member => firstLetters += member.toUpperCase().slice(0,1));
+    let result = firstLetters.split("").sort().join("");
+    return result;
+    //console.log( result);
+  }
+  /*throw new NotImplementedError('Not implemented');*/
   // remove line with error and write your code here
 }
 
