@@ -11,50 +11,63 @@ const { NotImplementedError } = require('../extensions/index.js');
  * getSeason(new Date(2020, 02, 31)) => 'spring'
  * 
  */
-function getSeason(/* date */) {
+function getSeason(date) {
+
   if (!date) {
-    console.log('Unable to determine the time of year!');
-    //return 'Unable to determine the time of year!';
-  } else if (typeof(date) === 'number' || typeof(date) === 'string' || typeof(date) === 'boolean') {
-    console.log(`${'(Error)'} ${'Invalid date!'}`);
-    //return `${'(Error)'} ${'Invalid date!'}`;
+
+    return "Unable to determine the time of year!";
+
+  } else if (Object.prototype.toString.call(date) !== '[object Date]') {
+
+   
+    try {
+      throw new TypeError('Invalid date!');
+    } catch (e) {
+      Object.prototype.toString.call(date) === '[object Date]'; 
+      e.message;
+    }
+    
+
   } else {
-    switch (date.getMonth()) {
+
+    let getMonth = date.getMonth();
+    
+    switch (getMonth) {
+        case 0:
+      return "winter";
+      break;
         case 1:
-      console.log("Winter");
+      return "winter";
       break;
         case 2:
-      console.log("Winter");
+      return "spring";
       break;
         case 3:
-      console.log("Spring");
+      return "spring";
       break;
         case 4:
-      console.log("Spring");
+      return "spring";
       break;
         case 5:
-      console.log("Spring");
+      return "summer";
       break;
         case 6:
-      console.log("Summer");
+      return "summer";
       break;
         case 7:
-      console.log("Summer");
+      return "summer";
       break;
         case 8:
-      console.log("Summer");
+      return "autumn";
       break;
         case 9:
-      console.log("Autumn");
+      return "autumn";
       break;
         case 10:
-      console.log("Autumn");
+      return "autumn";
       break;
         case 11:
-      console.log("Autumn");
-      break;
-        case 12:
-      console.log("winter");
+      return "winter";
       break;
     }
   }
